@@ -3,6 +3,7 @@
 This project implements a Finite State Machine (FSM) framework in Python. It includes an abstract FSM base class and a concrete example, `ModThreeFSM`, which computes the remainder of a binary string modulo 3.
 
 ## Project Structure
+
 ```md
 fsm_project/
 ├── fsm/
@@ -11,6 +12,7 @@ fsm_project/
 └── tests/
 └── test_fsm.py # Unit tests for FSM classes
 ```
+
 ## Features
 
 - Abstract FSM base class with strict type validation using Pydantic.
@@ -37,7 +39,7 @@ fsm_project/
 3. Install dependencies:
    ```bash
    conda install pip
-   pip install pydantic pytest pytest-cov
+   pip install -r ./requirements.txt
    ```
 
 ## Usage
@@ -50,4 +52,13 @@ from fsm.mod_three_fsm import ModThreeFSM
 fsm = ModThreeFSM()
 result = fsm.getRemainder("10101")
 print(f"Remainder modulo 3: {result}")
+```
+
+## Unit tests
+
+You can run the unit tests by running the following commands:
+
+```bash
+pytest
+pytest --cov=fsm_project
 ```
