@@ -1,5 +1,6 @@
 import pytest
 from fsm_project.fsm.mod_three_fsm import ModThreeFSM
+from pydantic import ValidationError
 
 
 def test_valid_inputs():
@@ -40,3 +41,17 @@ def test_process_input_strips_and_validates():
     assert fsm.processInput(" 101 ") == fsm.processInput("101")
     with pytest.raises(ValueError, match="Invalid input character 'x'"):
         fsm.processInput("10x1")
+
+
+def test_invalid_nonstring_input():
+    fsm = ModThreeFSM()
+    with pytest.raises(
+        ValidationError,
+        match="Input should be a valid string",
+    ):
+        fsm.processInput(123)
+    with pytest.raises(
+        ValidationError,
+        match="Input should be a valid string",
+    ):
+        fsm.getRemainder(123)
