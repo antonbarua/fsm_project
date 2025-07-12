@@ -3,14 +3,14 @@
 This project implements a Finite State Machine (FSM) framework in Python. It includes an abstract FSM base class and a concrete example, `ModThreeFSM`, which computes the remainder of a binary string modulo 3.
 
 ## Project Structure
-
+```md
 fsm_project/
 ├── fsm/
 │ ├── abstract_fsm.py # AbstractFSM base class
 │ └── mod_three_fsm.py # ModThreeFSM concrete implementation
 └── tests/
 └── test_fsm.py # Unit tests for FSM classes
-
+```
 ## Features
 
 - Abstract FSM base class with strict type validation using Pydantic.
@@ -23,7 +23,7 @@ fsm_project/
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/fsm_project.git
+   git clone https://github.com/antonbarua/fsm_project.git
    cd fsm_project
    ```
 
