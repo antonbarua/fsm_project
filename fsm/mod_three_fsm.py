@@ -43,39 +43,9 @@ class ModThreeFSM(AbstractFSM):
                 ("s2", "0"): "s1",
                 ("s2", "1"): "s2",
             },
+            finalStates={"s0", "s1", "s2"},
         )
         self._finalStateToRemainder = {"s0": "0", "s1": "1", "s2": "2"}
-
-    @validate_call
-    def processInput(self, input: str) -> str:
-        """
-        Processes the input string through the FSM, transitioning between states
-        according to the FSM's transition rules.
-
-        Args:
-            input (str): A binary string composed of characters '0' and '1'.
-                         Leading and trailing whitespace is ignored.
-
-        Returns:
-            str: The final state of the FSM after processing the input string.
-
-        Raises:
-            ValueError: If the input contains characters not in the alphabet,
-                        or if a transition for a given input from the current state does not exist.
-        """
-        input = input.strip()
-        currentState = self.initialState
-
-        for char in input:
-            if char not in self.alphabet:
-                raise ValueError(f"Invalid input character '{char}'")
-            nextState = self.transitions.get((currentState, char))
-            if nextState is None:
-                raise ValueError(
-                    f"No transition from state '{currentState}' on input '{char}'"
-                )
-            currentState = nextState
-        return currentState
 
     @validate_call
     def getRemainder(self, input: str) -> str:
@@ -90,8 +60,9 @@ class ModThreeFSM(AbstractFSM):
             str: The remainder (as a string) of the input binary number modulo 3.
 
         Raises:
-            ValueError: If the input is invalid or transitions are missing during processing.
+            ValueError: If the input is invalid or transitions are missing during processing or the final state is not in the set of acceptable final states.
             KeyError: If the final state is not found in the remainder mapping.
         """
+
         remainderState = self.processInput(input)
         return self._finalStateToRemainder[remainderState]
